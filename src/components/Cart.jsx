@@ -4,7 +4,7 @@ import CartItem from "../components/CartItem";
 import CheckoutForm from "../components/CheckoutForm";
 
 const Cart = () => {
-    const { cartItems, removeItem, clearCart } = useCart(); // Assuming useCart provides clearCart
+    const { cartItems, removeItem, clearCart } = useCart();
     const [showCheckout, setShowCheckout] = useState(false);
 
     const totalPrice = cartItems.reduce((total, item) => {
@@ -49,7 +49,7 @@ const Cart = () => {
                                 key={index}
                                 item={item}
                                 cantidad={item.cantidad}
-                                onRemove={() => handleRemoveItem(item.id)} // Pass removeItem function
+                                onRemove={() => handleRemoveItem(item.id)}
                             />
                         ))}
 

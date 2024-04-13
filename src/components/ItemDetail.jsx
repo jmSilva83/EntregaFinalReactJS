@@ -176,7 +176,7 @@ ItemDetail.propTypes = {
         imagen: PropTypes.string,
         precio: PropTypes.number,
         descripcion: PropTypes.string,
-        stock: PropTypes.number, // Propiedad del stock añadida
+        stock: PropTypes.number,
     }).isRequired,
     onAddToCart: PropTypes.func.isRequired,
 };

@@ -34,7 +34,7 @@ const ItemListContainer = ({ showAllProducts }) => {
                 } else {
                     const data = snapshot.docs.map((doc) => ({
                         id: doc.id,
-                        stock: doc.data().stock, // Asegúrate de que el campo stock esté en tus documentos
+                        stock: doc.data().stock,
                         ...doc.data(),
                     }));
                     setProductos(data);

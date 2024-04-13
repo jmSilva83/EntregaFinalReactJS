@@ -8,7 +8,7 @@ import '../index.css';
 
 
 const Checkout = () => {
-    const { cartItems, clearCart } = useCart(); // Obtener los productos del carrito desde el contexto Cart
+    const { cartItems, clearCart } = useCart();
     const [loading, setLoading] = useState(false);
     const [orderId, setOrderId] = useState(null);
 

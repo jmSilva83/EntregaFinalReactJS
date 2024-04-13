@@ -14,12 +14,10 @@ export const CartProvider = ({ children }) => {
         const existingItemIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id);
     
         if (existingItemIndex !== -1) {
-            // Si el producto ya está en el carrito, actualizamos su cantidad
             const updatedCartItems = [...cartItems];
             updatedCartItems[existingItemIndex].cantidad += cantidad;
             setCartItems(updatedCartItems);
         } else {
-            // Si el producto no está en el carrito, lo agregamos como un nuevo elemento con la cantidad especificada
             setCartItems((prevItems) => [...prevItems, { ...item, cantidad }]);
         }
     };
@@ -41,7 +39,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         clearCart,
-        removeItem, // Agregamos la función removeItem al contexto
+        removeItem,
         getCartQuantity,
     };
 

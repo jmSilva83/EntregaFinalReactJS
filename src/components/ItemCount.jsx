@@ -5,13 +5,13 @@ import { IoAdd } from "react-icons/io5";
 import { FaMinus } from "react-icons/fa6";
 
 const ItemCount = ({ onAddToCart }) => {
-    const [value, setValue] = useState(1); // Inicializamos el valor a 1 en lugar de 0
+    const [value, setValue] = useState(1);
     const stock = 10;
 
     const onAdd = (operator) => {
         if (
             (operator === "+" && value < stock) ||
-            (operator === "-" && value > 1) // Evitamos que el valor caiga por debajo de 1
+            (operator === "-" && value > 1)
         ) {
             const newValue = operator === "+" ? value + 1 : value - 1;
             setValue(newValue);
@@ -19,7 +19,7 @@ const ItemCount = ({ onAddToCart }) => {
     };
 
     const handleAddToCart = () => {
-        onAddToCart(value); // Pasamos el valor actual al agregar al carrito
+        onAddToCart(value);
     };
 
     return (
@@ -27,7 +27,7 @@ const ItemCount = ({ onAddToCart }) => {
             <button
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2.5 px-3 ml- rounded focus:outline-none focus:shadow-outline"
                 onClick={() => onAdd("-")}
-                disabled={value === 1} // Deshabilitamos el botón "-" cuando el valor es 1
+                disabled={value === 1}
             >
                 <FaMinus />
             </button>
