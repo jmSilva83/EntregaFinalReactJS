@@ -26,7 +26,7 @@ const ItemDetail = ({ producto, onAddToCart }) => {
                     setTimeout(() => {
                         setImagen(url);
                         setEstadoCarga("completo");
-                    }, 2000);
+                    }, 1500);
                 } else {
                     throw new Error("Error al cargar la imagen");
                 }
@@ -58,12 +58,12 @@ const ItemDetail = ({ producto, onAddToCart }) => {
 
     const handleAgregarAlCarrito = () => {
         if (!Number.isInteger(cantidad) || cantidad <= 0) {
-            toast.error("La cantidad seleccionada no es válida", { theme: "dark", autoClose: 1000  });
+            toast.error("La cantidad seleccionada no es válida", { theme: "dark", autoClose: 1500  });
             return;
         }
 
         if (cantidad > stockDisponible) {
-            toast.error("No hay suficiente stock disponible", { theme: "dark" });
+            toast.error("No hay suficiente stock disponible", { theme: "dark", position: "bottom-right", autoClose: 1500 });
             return;
         }
 
@@ -74,7 +74,9 @@ const ItemDetail = ({ producto, onAddToCart }) => {
                 producto?.nombre || "Nombre no definido"
             } al carrito.`,
             {
+                position: "bottom-right",
                 theme: "dark",
+                autoClose: 1500 
             }
         );
     };
@@ -109,7 +111,7 @@ const ItemDetail = ({ producto, onAddToCart }) => {
 
     return (
         <div className="flex flex-wrap justify-center">
-            <div className="neumorphism border p-4 rounded-md text-center ButtonBlur m-2">
+            <div className="neumorphism border p-4 rounded-md text-center ButtonBlur m-2 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 className="mb-2">{producto?.nombre || "Nombre no definido"}</h2>
 
                 {estadoCarga === "cargando" && <p>Cargando...</p>}

@@ -28,6 +28,11 @@ export const CartProvider = ({ children }) => {
         setCartItems([]);
     };
 
+    const removeItem = (itemId) => {
+        const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+        setCartItems(updatedCartItems);
+    };
+
     const getCartQuantity = () => {
         return cartItems.length;
     };
@@ -36,6 +41,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         clearCart,
+        removeItem, // Agregamos la función removeItem al contexto
         getCartQuantity,
     };
 

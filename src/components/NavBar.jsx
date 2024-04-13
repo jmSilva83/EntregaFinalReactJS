@@ -1,3 +1,4 @@
+
 // import "../index.css";
 // import { useState, useEffect, useRef } from "react";
 // import { NavLink } from "react-router-dom";
@@ -45,14 +46,25 @@
 //         };
 //     }, [showCategories]);
 
-//     const handleShowAllProducts = () => {
-//         // Aquí puedes agregar la lógica para mostrar todos los productos
-//         console.log("Mostrar todos los productos");
+//     const handleShowAllProducts = async () => {
+//         try {
+//             const db = getFirestore();
+//             const querySnapshot = await getDocs(collection(db, 'productos'));
+//             const allProducts = querySnapshot.docs.map(doc => ({
+//                 id: doc.id,
+//                 ...doc.data()
+//             }));
+//             // Aquí puedes hacer lo que necesites con la lista de productos, como pasarla a otro componente o actualizar el estado
+//             console.log("Todos los productos:", allProducts);
+//         } catch (error) {
+//             console.error('Error al obtener los productos:', error);
+//         }
 //     };
 
 //     const handleCategoriesToggle = () => {
 //         setShowCategories(!showCategories);
 //     };
+
 //     if (loading) return <h1>Cargando...</h1>;
 
 //     return (
@@ -151,6 +163,7 @@ import { NavLink } from "react-router-dom";
 import { FaXbox } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import CartWidget from "./CartWidget";
+import { motion } from "framer-motion";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 const NavBar = () => {
@@ -200,7 +213,6 @@ const NavBar = () => {
                 id: doc.id,
                 ...doc.data()
             }));
-            // Aquí puedes hacer lo que necesites con la lista de productos, como pasarla a otro componente o actualizar el estado
             console.log("Todos los productos:", allProducts);
         } catch (error) {
             console.error('Error al obtener los productos:', error);
@@ -212,6 +224,16 @@ const NavBar = () => {
     };
 
     if (loading) return <h1>Cargando...</h1>;
+
+    const listVariants = {
+        hidden: { opacity: 0, scale: 0 },
+        visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: -10 },
+        visible: { opacity: 1, y: 0, transition: { delay: 0.1 } }
+    };
 
     return (
         <header className="fixed top-0 bg-green-500 w-full">
@@ -246,23 +268,24 @@ const NavBar = () => {
                                 Categorías
                             </button>
                             {showCategories && categorias.length > 0 && (
-                                <ul
+                                <motion.ul
                                     ref={categoriesRef}
                                     className="absolute text-center bg-yellow-600 border px-5 text-gray-800 rounded-lg flex flex-col"
+                                    variants={listVariants}
+                                    initial="hidden"
+                                    animate="visible"
                                 >
                                     {categorias.map(({ id, nombre }) => (
-                                        <>
-                                            <NavLink
-                                                to={`/category/${id}`}
-                                                key={id}
-                                            >
-                                                <button className="hover:underline">
-                                                    {nombre}
-                                                </button>
+                                        <motion.li
+                                            key={id}
+                                            variants={itemVariants}
+                                        >
+                                            <NavLink to={`/category/${id}`}>
+                                                <button className="hover:underline">{nombre}</button>
                                             </NavLink>
-                                        </>
+                                        </motion.li>
                                     ))}
-                                </ul>
+                                </motion.ul>
                             )}
                         </li>
                         <li>

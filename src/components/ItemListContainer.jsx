@@ -23,9 +23,9 @@ const ItemListContainer = ({ showAllProducts }) => {
                 const getProductQuery = showAllProducts
                     ? collection(db, "productos")
                     : query(
-                          collection(db, "productos"),
-                          where("categoria", "==", parseInt(id))
-                      );
+                            collection(db, "productos"),
+                            where("categoria", "==", parseInt(id))
+                        );
 
                 const snapshot = await getDocs(getProductQuery);
                 if (snapshot.empty) {
@@ -60,7 +60,7 @@ const ItemListContainer = ({ showAllProducts }) => {
 };
 
 ItemListContainer.propTypes = {
-    showAllProducts: PropTypes.bool.isRequired, // Validación para showAllProducts
+    showAllProducts: PropTypes.string.isRequired,
 };
 
 export default ItemListContainer;
