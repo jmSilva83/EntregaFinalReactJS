@@ -33,7 +33,4 @@ Este proyecto es un e-commerce dedicado a la venta de juegos de Xbox en Argentin
 
 Las contribuciones son bienvenidas. Si tienes alguna sugerencia, característica o corrección de errores, no dudes en abrir un issue o enviar un pull request.
 
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
 
